@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_app/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ActionAdventure1 extends StatelessWidget {
@@ -9,380 +8,219 @@ class ActionAdventure1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Container(
-      decoration: const BoxDecoration(
-        color: Color(0xFFFFFFFF),
-      ),
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(2, 19.3, 0, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.fromLTRB(17.4, 0, 17.4, 19.2),
-              child: Align(
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(16, 50, 16, 16),
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
                 alignment: Alignment.topRight,
-                child: SizedBox(
+                child: SvgPicture.asset(
+                  'assets/vectors/vector_15_x2.svg',
                   width: 24.8,
                   height: 15.5,
-                  child: SizedBox(
-                    width: 24.8,
-                    height: 15.5,
-                    child: SvgPicture.asset(
-                      'assets/vectors/vector_15_x2.svg',
-                    ),
-                  ),
                 ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(11, 0, 11, 15),
-              child: Align(
+              const SizedBox(height: 20),
+              Align(
                 alignment: Alignment.topLeft,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                        'assets/images/bookpad_high_resolution_logo_black_1_photoroom_png_photoroom_3.png',
-                      ),
-                    ),
-                  ),
-                  child: SizedBox(
-                    width: 45,
-                    height: 45,
-                  ),
+                child: Image.asset(
+                  'assets/images/bookpad_high_resolution_logo_black_1_photoroom_png_photoroom_3.png',
+                  width: 45,
+                  height: 45,
                 ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(11, 0, 11, 47.5),
-              child: Align(
-                alignment: Alignment.topLeft,
+              const SizedBox(height: 20),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/frame_11712754351.jpeg',
+                    width: 77,
+                    height: 121,
+                    fit: BoxFit.cover,
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'The Hunger Games',
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: const Color(0xFF262422),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          'In a post-apocalyptic future, life has turned extremely hard. Fighting poverty and hunger everyday, 16 years old hunter Katniss does absolutely everything in her power to have enough for her defenseless little sister, and a lucid mother.',
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            color: const Color(0xFFABABAB),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x40000000),
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 14, 0.5),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              'assets/images/frame_11712754351.jpeg',
-                            ),
+                    Image.asset(
+                      'assets/images/image_2510.png',
+                      width: 53,
+                      height: 53,
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Author',
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            color: const Color(0xFFABABAB),
                           ),
                         ),
-                        child: SizedBox(
-                          width: 77,
-                          height: 121,
+                        const SizedBox(height: 4),
+                        Text(
+                          'Suzanne Collins',
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20,
+                            color: const Color(0xFF000000),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'About the book',
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  color: const Color(0xFF547DBE),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'In the ruins of a place once known as North America lies the nation of Panem, a shining Capitol surrounded by twelve outlying districts. The Capitol is harsh and cruel and keeps the districts in line by forcing them all to send one boy and one girl between the ages of twelve and eighteen to participate in the annual Hunger Games, a fight to the death on live TV.',
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                  color: const Color(0x80000000),
+                ),
+              ),
+              const SizedBox(height: 40),
+              Center(
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 18, horizontal: 50),
+                        backgroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Text(
+                        'Read Book',
+                        style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.white,
                         ),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(0, 20.5, 0, 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'The Hunger Games',
-                              style: GoogleFonts.getFont(
-                                'Poppins',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14,
-                                height: 1.2,
-                                letterSpacing: 0,
-                                color: const Color(0xFF262422),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              'In a post-apocalyptic future, life has turned extremely hard. Fighting poverty and hunger everyday, 16 years old hunter Katniss does absolutely everything in her power to have enough for her defenseless little sister, and a lucid mother. ',
-                              style: GoogleFonts.getFont(
-                                'Inter',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 10,
-                                height: 1.4,
-                                color: const Color(0xFFABABAB),
-                              ),
-                            ),
-                          ),
-                        ],
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 18, horizontal: 50),
+                        backgroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Text(
+                        'Add to favorites',
+                        style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(19, 0, 19, 11),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFFFFFFFF),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x40000000),
-                        offset: Offset(0, 0),
-                        blurRadius: 17.5,
-                      ),
-                    ],
-                  ),
-                  child: SizedBox(
-                    width: 279,
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(13, 6.5, 0, 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.fromLTRB(0, 7.5, 9, 0),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(
-                                    'assets/images/image_2510.png',
-                                  ),
-                                ),
-                              ),
-                              child: SizedBox(
-                                width: 53,
-                                height: 53,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.fromLTRB(0, 0, 0, 22.2),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0.3),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      'Author',
-                                      style: GoogleFonts.getFont(
-                                        'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 10,
-                                        height: 1.4,
-                                        color: const Color(0xFFABABAB),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    'Suzanne Collins',
-                                    style: GoogleFonts.getFont(
-                                      'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 20,
-                                      height: 1.2,
-                                      letterSpacing: -0.4,
-                                      color: const Color(0xFF000000),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(20, 0, 20, 12.5),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'About the book',
-                  style: GoogleFonts.getFont(
-                    'Inter',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15,
-                    height: 1.4,
-                    color: const Color(0xFF547DBE),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(21, 0, 21, 80.5),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'In the ruins of a place once known as North America lies the nation of Panem, a shining Capitol surrounded by twelve outlying districts. The Capitol is harsh and cruel and keeps the districts in line by forcing them all to send one boy and one girl between the ages of twelve and eighteen to participate in the annual Hunger Games, a fight to the death on live TV.',
-                  style: GoogleFonts.getFont(
-                    'Inter',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 11,
-                    height: 1.4,
-                    color: const Color(0x80000000),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 24, 13),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF000000),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x0D000000),
-                        offset: Offset(0, 1),
-                        blurRadius: 1,
-                      ),
-                    ],
+              const SizedBox(height: 40),
+              ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 10,
+                    sigmaY: 10,
                   ),
                   child: Container(
-                    width: 224,
-                    padding: const EdgeInsets.fromLTRB(0, 20, 0.4, 18),
-                    child: Text(
-                      'Read Book',
-                      style: GoogleFonts.getFont(
-                        'Inter',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        height: 1.5,
-                        color: const Color(0xFFFFFFFF),
-                      ),
+                    padding: const EdgeInsets.all(16),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x1A000000),
+                          offset: Offset(0, -0.5),
+                          blurRadius: 0,
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/vectors/subtract_17_x2.svg',
+                          width: 20,
+                          height: 22,
+                        ),
+                        SvgPicture.asset(
+                          'assets/vectors/user_135_x2.svg',
+                          width: 24,
+                          height: 24,
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 18, 22),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color(0xFF000000),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x0D000000),
-                        offset: Offset(0, 1),
-                        blurRadius: 1,
-                      ),
-                    ],
-                  ),
-                  child: Container(
-                    width: 226,
-                    padding: const EdgeInsets.fromLTRB(0, 20, 0.2, 18),
-                    child: Text(
-                      'Add to favorites',
-                      style: GoogleFonts.getFont(
-                        'Inter',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        height: 1.5,
-                        color: const Color(0xFFFFFFFF),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            ClipRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: 10,
-                  sigmaY: 10,
-                ),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFFFFFFF),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0x1A000000),
-                        offset: Offset(0, -0.5),
-                        blurRadius: 0,
-                      ),
-                    ],
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(18, 21, 18, 11),
-                    child: SizedBox(
-                      width: 292,
-                      child: Stack(
-                        children: [
-                          SizedBox(
-                            width: 292,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.fromLTRB(0, 2, 0, 0),
-                                  width: 20,
-                                  height: 22,
-                                  child: SizedBox(
-                                    width: 20,
-                                    height: 22,
-                                    child: SvgPicture.asset(
-                                      'assets/vectors/subtract_17_x2.svg',
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: SvgPicture.asset(
-                                    'assets/vectors/user_135_x2.svg',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Positioned(
-                            left: 93,
-                            top: -13,
-                            child: Opacity(
-                              opacity: 0.5,
-                              child: Container(
-                                width: 76,
-                                height: 49,
-                                padding: const EdgeInsets.fromLTRB(0, 13, 0, 12),
-                                child: SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: SvgPicture.asset(
-                                    'assets/vectors/search_121_x2.svg',
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

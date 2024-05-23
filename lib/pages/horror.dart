@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'horror_1.dart';
+import 'horror_2.dart';
+import 'horror_3.dart';
+import 'horror_4.dart';
+import 'horror_5.dart';
+import 'horror_6.dart';
 
 class Horror extends StatelessWidget {
   const Horror({super.key});
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,30 +74,84 @@ class Horror extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBookItem('assets/images/frame_1171275441.jpeg',
-                            'The Haunting of Hill House'),
-                        _buildBookItem('assets/images/frame_1171275442.jpeg',
-                            'Your Blood, My Bones'),
+                        _buildBookItem(
+                          'assets/images/frame_1171275441.jpeg',
+                          'The Haunting of Hill House',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Horror1()),
+                            );
+                          },
+                        ),
+                        _buildBookItem(
+                          'assets/images/frame_1171275442.jpeg',
+                          'Your Blood, My Bones',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Horror2()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBookItem('assets/images/frame_11712754361.jpeg',
-                            'Bless Your Heart'),
-                        _buildBookItem('assets/images/frame_1171275443.jpeg',
-                            'The Black Girl Survives in This One'),
+                        _buildBookItem(
+                          'assets/images/frame_11712754361.jpeg',
+                          'Bless Your Heart',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Horror3()),
+                            );
+                          },
+                        ),
+                        _buildBookItem(
+                          'assets/images/frame_1171275443.jpeg',
+                          'The Black Girl Survives in This One',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Horror4()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBookItem('assets/images/frame_1171275435.png',
-                            'Ghost Station'),
-                        _buildBookItem('assets/images/frame_1171275444.jpeg',
-                            'The Gathering'),
+                        _buildBookItem(
+                          'assets/images/frame_1171275435.png',
+                          'Ghost Station',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Horror5()),
+                            );
+                          },
+                        ),
+                        _buildBookItem(
+                          'assets/images/frame_1171275444.jpeg',
+                          'The Gathering',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Horror6()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ],
@@ -120,34 +181,37 @@ class Horror extends StatelessWidget {
     );
   }
 
-  Widget _buildBookItem(String imagePath, String title) {
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Image.asset(
-            imagePath,
-            width: 120,
-            height: 200,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(height: 4),
-        SizedBox(
-          width: 120,
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.getFont(
-              'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 10,
-              height: 1.4,
-              color: const Color(0xFF000000),
+  Widget _buildBookItem(String imagePath, String title, Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+              imagePath,
+              width: 120,
+              height: 200,
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-      ],
+          const SizedBox(height: 4),
+          SizedBox(
+            width: 120,
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.getFont(
+                'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 10,
+                height: 1.4,
+                color: const Color(0xFF000000),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

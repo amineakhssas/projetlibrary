@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BookRequestForm extends StatelessWidget {
-  const BookRequestForm({super.key});
+class BookRequestForm extends StatefulWidget {
+  const BookRequestForm({Key? key}) : super(key: key);
+
+  @override
+  _BookRequestFormState createState() => _BookRequestFormState();
+}
+
+class _BookRequestFormState extends State<BookRequestForm> {
+  String _selectedGenre = 'Fiction'; // Default value
 
   @override
   Widget build(BuildContext context) {
@@ -68,35 +73,31 @@ class BookRequestForm extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 30),
-                _buildTextField('Book Title:', 'ex: Moby Dick'),
+                _buildTextField('Book Title', 'ex: Moby Dick'),
                 const SizedBox(height: 20),
-                _buildTextField('Author:', 'ex: Herman Melville'),
+                _buildTextField('Author', 'ex: Herman Melville'),
                 const SizedBox(height: 20),
-                _buildTextField('Genre:', 'ex: Fiction'),
+                _buildGenreDropdown(),
                 const SizedBox(height: 20),
-                _buildTextField('Description:', ''),
+                _buildTextField('Description', ''),
                 const SizedBox(height: 30),
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF000000),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Submit',
+                    style: GoogleFonts.getFont(
+                      'Poppins',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                      height: 1.2,
+                      letterSpacing: 0.3,
+                      color: const Color(0xFFFFFFFF),
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF000000),
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 14,
-                      horizontal: 64,
-                    ),
-                    child: Text(
-                      'Submit',
-                      style: GoogleFonts.getFont(
-                        'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                        height: 1.2,
-                        letterSpacing: 0.3,
-                        color: const Color(0xFFFFFFFF),
-                      ),
                     ),
                   ),
                 ),
@@ -109,7 +110,7 @@ class BookRequestForm extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(String label, String placeholder) {
+  Widget _buildTextField(String label, String hintText) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -125,21 +126,58 @@ class BookRequestForm extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Container(
-          decoration: BoxDecoration(
-            color: const Color(0xFFFAFAFA),
-            borderRadius: BorderRadius.circular(10),
+        TextField(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            labelText: hintText,
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
-          child: Text(
-            placeholder,
-            style: GoogleFonts.getFont(
-              'Poppins',
-              fontWeight: FontWeight.w400,
-              fontSize: 15,
-              height: 1.4,
-              letterSpacing: 0.3,
-              color: const Color(0xFF888888),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGenreDropdown() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Genre',
+          style: GoogleFonts.getFont(
+            'Poppins',
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+            height: 1.4,
+            letterSpacing: 0.3,
+            color: const Color(0xFF000000),
+          ),
+        ),
+        const SizedBox(height: 10),
+        DropdownButtonFormField<String>(
+          value: _selectedGenre,
+          onChanged: (newValue) {
+            setState(() {
+              _selectedGenre = newValue!;
+            });
+          },
+          items: <String>[
+            'Fiction',
+            'Horror',
+            'Mystery',
+            'History',
+            'Action & Adventure'
+          ]
+              .map<DropdownMenuItem<String>>(
+                (String value) => DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                ),
+              )
+              .toList(),
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
         ),

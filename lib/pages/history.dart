@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'history_1.dart';
+import 'history_2.dart';
+import 'history_3.dart';
+import 'history_4.dart';
+import 'history_5.dart';
+import 'history_6.dart';
 
 class History extends StatelessWidget {
   const History({super.key});
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,10 +75,28 @@ class History extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBookItem('assets/images/image_19.png',
-                            'After 1177 B.C.: The Survival of Civilizations'),
-                        _buildBookItem('assets/images/image_20.png',
-                            'The Demon of Unrest'),
+                        _buildBookItem(
+                          'assets/images/image_19.png',
+                          'After 1177 B.C.: The Survival of Civilizations',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => History1()),
+                            );
+                          },
+                        ),
+                        _buildBookItem(
+                          'assets/images/image_20.png',
+                          'The Demon of Unrest',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => History2()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -79,9 +104,27 @@ class History extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         _buildBookItem(
-                            'assets/images/image_21.png', 'The Wide Wide Sea'),
-                        _buildBookItem('assets/images/image_22.png',
-                            'The Swans of Harlem'),
+                          'assets/images/image_21.png',
+                          'The Wide Wide Sea',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => History3()),
+                            );
+                          },
+                        ),
+                        _buildBookItem(
+                          'assets/images/image_22.png',
+                          'The Swans of Harlem',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => History4()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -89,9 +132,27 @@ class History extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         _buildBookItem(
-                            'assets/images/image_23.png', 'Hell Put to Shame'),
+                          'assets/images/image_23.png',
+                          'Hell Put to Shame',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => History5()),
+                            );
+                          },
+                        ),
                         _buildBookItem(
-                            'assets/images/image_24.png', 'The Rulebreaker'),
+                          'assets/images/image_24.png',
+                          'The Rulebreaker',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => History6()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ],
@@ -121,34 +182,37 @@ class History extends StatelessWidget {
     );
   }
 
-  Widget _buildBookItem(String imagePath, String title) {
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Image.asset(
-            imagePath,
-            width: 120,
-            height: 200,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(height: 4),
-        SizedBox(
-          width: 120,
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.getFont(
-              'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 10,
-              height: 1.4,
-              color: const Color(0xFF000000),
+  Widget _buildBookItem(String imagePath, String title, Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+              imagePath,
+              width: 120,
+              height: 200,
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-      ],
+          const SizedBox(height: 4),
+          SizedBox(
+            width: 120,
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.getFont(
+                'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 10,
+                height: 1.4,
+                color: const Color(0xFF000000),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

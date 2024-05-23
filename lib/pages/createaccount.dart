@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CreateAccount extends StatelessWidget {
+class CreateAccount extends StatefulWidget {
   const CreateAccount({super.key});
+
+  @override
+  _CreateAccountState createState() => _CreateAccountState();
+}
+
+class _CreateAccountState extends State<CreateAccount> {
+  bool _passwordVisible = false;
+  bool _confirmPasswordVisible = false;
+  bool _termsAccepted = false;
+
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +59,27 @@ class CreateAccount extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              _buildTextField('Full Name', 'ex: Alex Mahone'),
+              _buildTextField(
+                  'Full Name', 'ex: Alex Mahone', _fullNameController),
               const SizedBox(height: 20),
-              _buildTextField('Email', 'ex: URNAME@email.com'),
+              _buildTextField(
+                  'Email', 'ex: URNAME@email.com', _emailController),
               const SizedBox(height: 20),
-              _buildTextField('Phone', '+212 6 ** ** ** **'),
+              _buildTextField('Phone', '+212 6 ** ** ** **', _phoneController),
               const SizedBox(height: 20),
-              _buildPasswordField('Password', '*************'),
+              _buildPasswordField('Password', '*************',
+                  _passwordController, _passwordVisible, () {
+                setState(() {
+                  _passwordVisible = !_passwordVisible;
+                });
+              }),
               const SizedBox(height: 20),
-              _buildPasswordField('Confirm Password', '*************'),
+              _buildPasswordField('Confirm Password', '*************',
+                  _confirmPasswordController, _confirmPasswordVisible, () {
+                setState(() {
+                  _confirmPasswordVisible = !_confirmPasswordVisible;
+                });
+              }),
               const SizedBox(height: 20),
               _buildTermsAndPolicy(),
               const SizedBox(height: 20),
@@ -87,7 +114,8 @@ class CreateAccount extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(String label, String hint) {
+  Widget _buildTextField(
+      String label, String hint, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -110,13 +138,17 @@ class CreateAccount extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Text(
-            hint,
-            style: GoogleFonts.getFont(
-              'Poppins',
-              fontWeight: FontWeight.w400,
-              fontSize: 15,
-              color: const Color(0xFF888888),
+          child: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: hint,
+              border: InputBorder.none,
+              hintStyle: GoogleFonts.getFont(
+                'Poppins',
+                fontWeight: FontWeight.w400,
+                fontSize: 15,
+                color: const Color(0xFF888888),
+              ),
             ),
           ),
         ),
@@ -124,7 +156,12 @@ class CreateAccount extends StatelessWidget {
     );
   }
 
-  Widget _buildPasswordField(String label, String hint) {
+  Widget _buildPasswordField(
+      String label,
+      String hint,
+      TextEditingController controller,
+      bool visible,
+      VoidCallback toggleVisibility) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -150,29 +187,31 @@ class CreateAccount extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    'assets/vectors/circle_lock_01_x2.svg',
-                    width: 24,
-                    height: 24,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    hint,
-                    style: GoogleFonts.getFont(
+              Expanded(
+                child: TextField(
+                  controller: controller,
+                  obscureText: !visible,
+                  decoration: InputDecoration(
+                    hintText: hint,
+                    border: InputBorder.none,
+                    hintStyle: GoogleFonts.getFont(
                       'Poppins',
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
                       color: const Color(0xFFABABAB),
                     ),
                   ),
-                ],
+                ),
               ),
-              SvgPicture.asset(
-                'assets/vectors/view_off_1_x2.svg',
-                width: 24,
-                height: 24,
+              InkWell(
+                onTap: toggleVisibility,
+                child: SvgPicture.asset(
+                  visible
+                      ? 'assets/vectors/view_on_1_x2.svg'
+                      : 'assets/vectors/view_off_1_x2.svg',
+                  width: 24,
+                  height: 24,
+                ),
               ),
             ],
           ),
@@ -184,12 +223,21 @@ class CreateAccount extends StatelessWidget {
   Widget _buildTermsAndPolicy() {
     return Row(
       children: [
-        Container(
-          width: 13,
-          height: 13,
-          decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xFF9C5A46)),
-            borderRadius: BorderRadius.circular(1),
+        InkWell(
+          onTap: () {
+            setState(() {
+              _termsAccepted = !_termsAccepted;
+            });
+          },
+          child: Container(
+            width: 13,
+            height: 13,
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFF9C5A46)),
+              borderRadius: BorderRadius.circular(1),
+              color:
+                  _termsAccepted ? const Color(0xFF9C5A46) : Colors.transparent,
+            ),
           ),
         ),
         const SizedBox(width: 8),
@@ -229,10 +277,14 @@ class CreateAccount extends StatelessWidget {
   Widget _buildSignUpButton() {
     return Center(
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: _termsAccepted
+            ? () {
+                // Handle sign up logic here
+              }
+            : null,
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 130),
-          backgroundColor: Colors.black,
+          backgroundColor: _termsAccepted ? Colors.black : Colors.grey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -252,25 +304,30 @@ class CreateAccount extends StatelessWidget {
 
   Widget _buildSignUpWithGoogle() {
     return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'or sign up with',
-            style: GoogleFonts.getFont(
-              'Poppins',
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-              color: const Color(0xFF888888),
+      child: InkWell(
+        onTap: () {
+          // Handle sign up with Google logic here
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'or sign up with',
+              style: GoogleFonts.getFont(
+                'Poppins',
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+                color: const Color(0xFF888888),
+              ),
             ),
-          ),
-          const SizedBox(width: 10),
-          SvgPicture.asset(
-            'assets/vectors/xmlid_28_x2.svg',
-            width: 27,
-            height: 27,
-          ),
-        ],
+            const SizedBox(width: 10),
+            SvgPicture.asset(
+              'assets/vectors/xmlid_28_x2.svg',
+              width: 27,
+              height: 27,
+            ),
+          ],
+        ),
       ),
     );
   }

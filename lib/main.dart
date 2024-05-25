@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
         //body: Fiction41(),
         //body: Fiction42(),
         //body: Fiction6(),
-        //body: Frontpage(),
+        body: Frontpage(),
         //body: History(),
         //body: History1(),
         //body: History2(),
@@ -101,7 +101,7 @@ class MyApp extends StatelessWidget {
         //body: Mystery6(),
         //body: Profile(),
         //body: Search(),
-        body: Search1(),
+        //body: Search1(),
         //body: SubscriptionPrices(),
       ),
     );

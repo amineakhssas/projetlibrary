@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'createaccount.dart'; // Import the file where CreateAccount class is defined
+import 'login.dart'; // Import the file where Login class is defined
+import 'homepage.dart'; // Import the file where Homepage class is defined
 
 class Frontpage extends StatelessWidget {
-  const Frontpage({super.key});
+  const Frontpage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,14 @@ class Frontpage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              CreateAccount()), // Navigate to CreateAccount screen
+                    );
+                  },
                   child: Text(
                     'Create an account',
                     style: GoogleFonts.getFont(
@@ -62,21 +72,16 @@ class Frontpage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Login()), // Navigate to Login screen
+                    );
+                  },
                   child: Text(
-                    'Already have an account?',
-                    style: GoogleFonts.getFont(
-                      'Poppins',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
-                      color: const Color(0xB0D9D9D9),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Click here.',
+                    ' u have an account,Click here.',
                     style: GoogleFonts.getFont(
                       'Poppins',
                       fontWeight: FontWeight.w400,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart'; // Make sure this path is correct
 
 import 'package:flutter_app/pages/action_adventure.dart';
 import 'package:flutter_app/pages/action_adventure_1.dart';
@@ -47,7 +49,13 @@ import 'package:flutter_app/pages/search.dart';
 import 'package:flutter_app/pages/search_1.dart';
 import 'package:flutter_app/pages/subscription_prices.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -65,7 +73,7 @@ class MyApp extends StatelessWidget {
         //body: ActionAdventure5(),
         //body: ActionAdventure6(),
         // body: BookRequestForm(),
-        // body: CreateAccount(),
+        //body: CreateAccount(),
         //body: Downloads(),
         //body: Favorites(),
         //body: Fiction(),
@@ -91,7 +99,7 @@ class MyApp extends StatelessWidget {
         //body: Horror4(),
         //body: Horror5(),
         //body: Horror6(),
-        //body: Login(),
+        body: Login(),
         //body: Mystery(),
         //body: Mystery1(),
         //body: Mystery2(),
@@ -102,7 +110,7 @@ class MyApp extends StatelessWidget {
         //body: Profile(),
         //body: Search(),
         // body: Search1(),
-        body: SubscriptionPrices(),
+        //body: SubscriptionPrices(),
       ),
     );
   }

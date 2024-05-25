@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+// Import your specific pages here
+import 'fiction_1.dart';
+import 'fiction_2.dart';
+import 'fiction_42.dart';
+import 'fiction_41.dart';
+import 'fiction_4.dart';
+import 'fiction_6.dart';
 
 class Fiction extends StatelessWidget {
   const Fiction({super.key});
@@ -68,30 +74,84 @@ class Fiction extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBookItem('assets/images/image_1.png',
-                            'The philosopher’s stone'),
-                        _buildBookItem('assets/images/image_4.png',
-                            'The prisoner of azkaban'),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        _buildBookItem('assets/images/image_3.png',
-                            'The chamber of secrets'),
                         _buildBookItem(
-                            'assets/images/image_5.png', 'The goblet of fire'),
+                          context,
+                          'assets/images/image_1.png',
+                          'The philosopher’s stone',
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Fiction1(),
+                            ),
+                          ),
+                        ),
+                        _buildBookItem(
+                          context,
+                          'assets/images/image_4.png',
+                          'The prisoner of azkaban',
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Fiction2(),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBookItem('assets/images/image_6.png',
-                            'The order of the phoenix'),
-                        _buildBookItem('assets/images/image_7.png',
-                            'The half blood prince'),
+                        _buildBookItem(
+                          context,
+                          'assets/images/image_3.png',
+                          'The chamber of secrets',
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Fiction42(),
+                            ),
+                          ),
+                        ),
+                        _buildBookItem(
+                          context,
+                          'assets/images/image_5.png',
+                          'The goblet of fire',
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Fiction41(),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildBookItem(
+                          context,
+                          'assets/images/image_6.png',
+                          'The order of the phoenix',
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Fiction4(),
+                            ),
+                          ),
+                        ),
+                        _buildBookItem(
+                          context,
+                          'assets/images/image_7.png',
+                          'The half blood prince',
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Fiction6(),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -121,34 +181,38 @@ class Fiction extends StatelessWidget {
     );
   }
 
-  Widget _buildBookItem(String imagePath, String title) {
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Image.asset(
-            imagePath,
-            width: 120,
-            height: 200,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(height: 4),
-        SizedBox(
-          width: 120,
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.getFont(
-              'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 10,
-              height: 1.4,
-              color: const Color(0xFF000000),
+  Widget _buildBookItem(
+      BuildContext context, String imagePath, String title, Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+              imagePath,
+              width: 120,
+              height: 200,
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-      ],
+          const SizedBox(height: 4),
+          SizedBox(
+            width: 120,
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.getFont(
+                'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 10,
+                height: 1.4,
+                color: const Color(0xFF000000),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

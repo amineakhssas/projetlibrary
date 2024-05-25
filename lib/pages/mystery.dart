@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'mystery_1.dart';
+import 'mystery_2.dart';
+import 'mystery_3.dart';
+import 'mystery_4.dart';
+import 'mystery_5.dart';
+import 'mystery_6.dart';
 
 class Mystery extends StatelessWidget {
   const Mystery({super.key});
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,10 +74,28 @@ class Mystery extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBookItem('assets/images/image_191.png',
-                            'Murder on the Orient Express'),
                         _buildBookItem(
-                            'assets/images/image_253.png', 'Mr. Mercedes'),
+                          'assets/images/image_191.png',
+                          'Murder on the Orient Express',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Mystery2()),
+                            );
+                          },
+                        ),
+                        _buildBookItem(
+                          'assets/images/image_253.png',
+                          'Mr. Mercedes',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Mystery1()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -78,19 +103,55 @@ class Mystery extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         _buildBookItem(
-                            'assets/images/image_282.png', 'Case Histories'),
+                          'assets/images/image_282.png',
+                          'Case Histories',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Mystery3()),
+                            );
+                          },
+                        ),
                         _buildBookItem(
-                            'assets/images/image_271.png', 'Bury Your Dead'),
+                          'assets/images/image_271.png',
+                          'Bury Your Dead',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Mystery4()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildBookItem('assets/images/image_28.png',
-                            'Crime and punishment'),
                         _buildBookItem(
-                            'assets/images/image_29.png', 'Kill Her Twice'),
+                          'assets/images/image_28.png',
+                          'Crime and punishment',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Mystery5()),
+                            );
+                          },
+                        ),
+                        _buildBookItem(
+                          'assets/images/image_29.png',
+                          'Kill Her Twice',
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Mystery6()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ],
@@ -120,34 +181,37 @@ class Mystery extends StatelessWidget {
     );
   }
 
-  Widget _buildBookItem(String imagePath, String title) {
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Image.asset(
-            imagePath,
-            width: 120,
-            height: 200,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(height: 4),
-        SizedBox(
-          width: 120,
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.getFont(
-              'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 10,
-              height: 1.4,
-              color: const Color(0xFF000000),
+  Widget _buildBookItem(String imagePath, String title, Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+              imagePath,
+              width: 120,
+              height: 200,
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-      ],
+          const SizedBox(height: 4),
+          SizedBox(
+            width: 120,
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.getFont(
+                'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 10,
+                height: 1.4,
+                color: const Color(0xFF000000),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

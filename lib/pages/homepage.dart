@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:flutter_svg/svg.dart';
-import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+// Import your other pages here
+import 'fiction.dart';
+import 'history.dart';
+import 'mystery.dart';
+import 'horror.dart';
+import 'action_adventure.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -31,7 +34,7 @@ class Homepage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  child: SizedBox(
+                  child: const SizedBox(
                     width: 156,
                     height: 92,
                   ),
@@ -42,30 +45,61 @@ class Homepage extends StatelessWidget {
                 'assets/images/button_primary_3.png',
                 'Fiction',
                 const Color(0xFF000000),
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Fiction()),
+                  );
+                },
               ),
               _buildCategoryButton(
                 context,
                 'assets/images/button_primary_1.png',
                 'Action & Adventure',
                 const Color(0xFFFFFFFF),
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ActionAdventure()),
+                  );
+                },
               ),
               _buildCategoryButton(
                 context,
                 'assets/images/button_primary.jpeg',
                 'History',
                 const Color(0xFF000000),
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const History()),
+                  );
+                },
               ),
               _buildCategoryButton(
                 context,
                 'assets/images/button_primary_4.jpeg',
                 'Mystery',
                 const Color(0xFFFFFFFF),
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Mystery()),
+                  );
+                },
               ),
               _buildCategoryButton(
                 context,
                 'assets/images/button_primary_2.jpeg',
                 'Horror',
                 const Color(0xFFFFFFFF),
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Horror()),
+                  );
+                },
               ),
             ],
           ),
@@ -91,35 +125,38 @@ class Homepage extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryButton(
-      BuildContext context, String imagePath, String title, Color textColor) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage(imagePath),
-        ),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x0D000000),
-            offset: Offset(0, 1),
-            blurRadius: 1,
-          ),
-        ],
-      ),
+  Widget _buildCategoryButton(BuildContext context, String imagePath,
+      String title, Color textColor, Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 19, horizontal: 0.4),
-        child: Center(
-          child: Text(
-            title,
-            style: GoogleFonts.getFont(
-              'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
-              height: 1.5,
-              color: textColor,
+        margin: const EdgeInsets.symmetric(vertical: 20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(imagePath),
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x0D000000),
+              offset: Offset(0, 1),
+              blurRadius: 1,
+            ),
+          ],
+        ),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 19, horizontal: 0.4),
+          child: Center(
+            child: Text(
+              title,
+              style: GoogleFonts.getFont(
+                'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                height: 1.5,
+                color: textColor,
+              ),
             ),
           ),
         ),

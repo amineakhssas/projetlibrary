@@ -1,12 +1,71 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_app/pages/homepage.dart'; // Ensure the path is correct
 
 class Login extends StatelessWidget {
   const Login({super.key});
 
+  Future<User?> _signInWithGoogle(BuildContext context) async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Google sign-in canceled')),
+        );
+        return null;
+      }
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Homepage()),
+      );
+      return userCredential.user;
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to sign in with Google: $e')),
+      );
+      return null;
+    }
+  }
+
+  Future<void> _signInWithEmailAndPassword(
+      BuildContext context, String email, String password) async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Homepage()),
+      );
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text('Failed to sign in with email and password: $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -56,6 +115,7 @@ class Login extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFFFAFAFA),
@@ -91,6 +151,7 @@ class Login extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       TextField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           filled: true,
@@ -114,7 +175,13 @@ class Login extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 17.6),
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _signInWithEmailAndPassword(
+                        context,
+                        emailController.text,
+                        passwordController.text,
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF000000),
                       padding: const EdgeInsets.symmetric(vertical: 11.5),
@@ -162,7 +229,7 @@ class Login extends StatelessWidget {
                 ),
                 const SizedBox(height: 19),
                 OutlinedButton.icon(
-                  onPressed: () {},
+                  onPressed: () => _signInWithGoogle(context),
                   icon: SvgPicture.asset(
                     'assets/vectors/super_g_x2.svg',
                     width: 24.8,

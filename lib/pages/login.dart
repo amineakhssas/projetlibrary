@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_app/pages/homepage.dart'; // Ensure the path is correct
+import 'package:flutter_app/pages/profile.dart'; // Ensure the path is correct
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -28,7 +28,7 @@ class Login extends StatelessWidget {
           await FirebaseAuth.instance.signInWithCredential(credential);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Homepage()),
+        MaterialPageRoute(builder: (context) => Profile()),
       );
       return userCredential.user;
     } catch (e) {
@@ -50,7 +50,7 @@ class Login extends StatelessWidget {
       );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Homepage()),
+        MaterialPageRoute(builder: (context) => Profile()),
       );
     } catch (e) {
       print(e);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'downloads.dart'; // Ensure the path is correct
 
 class Favorites extends StatelessWidget {
   const Favorites({super.key});
@@ -67,17 +68,26 @@ class Favorites extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 18, vertical: 8),
-                      child: Text(
-                        'Downloads',
-                        style: GoogleFonts.getFont(
-                          'Inter',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          height: 1.5,
-                          color: const Color(0xFF000000),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Downloads()),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 18, vertical: 8),
+                        child: Text(
+                          'Downloads',
+                          style: GoogleFonts.getFont(
+                            'Inter',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            height: 1.5,
+                            color: const Color(0xFF000000),
+                          ),
                         ),
                       ),
                     ),
@@ -89,31 +99,26 @@ class Favorites extends StatelessWidget {
                 'assets/images/image_1.png',
                 '4.6',
                 'Harry Potter',
-                '\$200.00',
               ),
               _buildBookItem(
                 'assets/images/image_4.png',
                 '4.2',
                 'Harry Potter',
-                '\$200.00',
               ),
               _buildBookItem(
                 'assets/images/image_3.png',
                 '4.1',
                 'Harry Potter',
-                '\$200.00',
               ),
               _buildBookItem(
                 'assets/images/image_5.png',
                 '3.8',
                 'Harry Potter',
-                '\$200.00',
               ),
               _buildBookItem(
                 'assets/images/image_2.png',
                 '4.0',
                 'Harry Potter',
-                '\$200.00',
               ),
             ],
           ),
@@ -139,8 +144,7 @@ class Favorites extends StatelessWidget {
     );
   }
 
-  Widget _buildBookItem(
-      String imagePath, String rating, String title, String price) {
+  Widget _buildBookItem(String imagePath, String rating, String title) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
@@ -224,26 +228,6 @@ class Favorites extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          const SizedBox(width: 16),
-          Column(
-            children: [
-              SvgPicture.asset(
-                'assets/vectors/vector_968_x2.svg',
-                width: 10,
-                height: 16,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                price,
-                style: GoogleFonts.getFont(
-                  'Inter',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
-                  color: const Color(0xFF000000),
-                ),
-              ),
-            ],
           ),
         ],
       ),

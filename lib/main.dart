@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
         //body: ActionAdventure6(),
         // body: BookRequestForm(),
         //body: CreateAccount(),
-        body: Downloads(),
+        //body: Downloads(),
         //body: Favorites(),
         //body: Fiction(),
         //body: Fiction1(),
@@ -110,7 +110,7 @@ class MyApp extends StatelessWidget {
         //body: Profile(),
         //body: Search(),
         // body: Search1(),
-        //body: SubscriptionPrices(),
+        body: SubscriptionPrices(),
         //body: payment(),
       ),
     );

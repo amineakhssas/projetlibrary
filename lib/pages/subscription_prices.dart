@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/payment.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_app/payment.dart';
 
 class SubscriptionPrices extends StatelessWidget {
   const SubscriptionPrices({super.key});

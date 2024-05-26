@@ -66,9 +66,6 @@ class Login extends StatelessWidget {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -119,7 +116,6 @@ class Login extends StatelessWidget {
                       const SizedBox(height: 5),
                       TextField(
                         controller: emailController,
-                        controller: emailController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFFFAFAFA),
@@ -156,7 +152,6 @@ class Login extends StatelessWidget {
                       const SizedBox(height: 5),
                       TextField(
                         controller: passwordController,
-                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           filled: true,
@@ -180,13 +175,6 @@ class Login extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 17.6),
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      _signInWithEmailAndPassword(
-                        context,
-                        emailController.text,
-                        passwordController.text,
-                      );
-                    },
                     onPressed: () {
                       _signInWithEmailAndPassword(
                         context,
@@ -241,7 +229,6 @@ class Login extends StatelessWidget {
                 ),
                 const SizedBox(height: 19),
                 OutlinedButton.icon(
-                  onPressed: () => _signInWithGoogle(context),
                   onPressed: () => _signInWithGoogle(context),
                   icon: SvgPicture.asset(
                     'assets/vectors/super_g_x2.svg',

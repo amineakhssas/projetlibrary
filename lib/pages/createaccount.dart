@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-<<<<<<< Updated upstream
-import 'package:flutter/gestures.dart';
-=======
->>>>>>> Stashed changes
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_app/pages/homepage.dart'; // Import the homepage
-<<<<<<< Updated upstream
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_app/pages/homepage.dart'; // Import the homepage
-=======
->>>>>>> Stashed changes
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({super.key});
@@ -28,10 +18,6 @@ class _CreateAccountState extends State<CreateAccount> {
   bool _confirmPasswordVisible = false;
   bool _termsAccepted = false;
   bool _isLoading = false;
-<<<<<<< Updated upstream
-  bool _isLoading = false;
-=======
->>>>>>> Stashed changes
 
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -48,24 +34,9 @@ class _CreateAccountState extends State<CreateAccount> {
     print("CreateAccount page initialized");
   }
 
-<<<<<<< Updated upstream
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    print("CreateAccount page initialized");
-  }
-
   @override
   Widget build(BuildContext context) {
     print("Build method called");
-    print("Build method called");
-=======
-  @override
-  Widget build(BuildContext context) {
-    print("Build method called");
->>>>>>> Stashed changes
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -132,80 +103,14 @@ class _CreateAccountState extends State<CreateAccount> {
                 _buildSignUpButton(),
               ],
             ),
-<<<<<<< Updated upstream
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Image.asset(
-                    'assets/images/bookpad_high_resolution_logo_black_1_photoroom_png_photoroom_3.png',
-                    width: 45,
-                    height: 45,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Create your account',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 25,
-                    height: 1.2,
-                    letterSpacing: 0.5,
-                    color: const Color(0xFF000000),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                _buildTextField('Full Name', 'ex: Alex Mahone',
-                    _fullNameController, TextInputType.name),
-                const SizedBox(height: 20),
-                _buildTextField('Email', 'ex: URNAME@email.com',
-                    _emailController, TextInputType.emailAddress),
-                const SizedBox(height: 20),
-                _buildTextField('Phone', '+212 6 ** ** ** **', _phoneController,
-                    TextInputType.phone),
-                const SizedBox(height: 20),
-                _buildPasswordField(
-                    'Password', '*', _passwordController, _passwordVisible, () {
-                  setState(() {
-                    _passwordVisible = !_passwordVisible;
-                  });
-                }),
-                const SizedBox(height: 20),
-                _buildPasswordField('Confirm Password', '*',
-                    _confirmPasswordController, _confirmPasswordVisible, () {
-                  setState(() {
-                    _confirmPasswordVisible = !_confirmPasswordVisible;
-                  });
-                }),
-                const SizedBox(height: 20),
-                _buildTermsAndPolicy(context),
-                const SizedBox(height: 20),
-                _buildSignUpButton(),
-              ],
-            ),
           ),
         ),
       ),
-    );
-=======
-          ),
-        ),
-      ),
->>>>>>> Stashed changes
     );
   }
 
   Widget _buildTextField(String label, String hint,
       TextEditingController controller, TextInputType inputType) {
-<<<<<<< Updated upstream
-  Widget _buildTextField(String label, String hint,
-      TextEditingController controller, TextInputType inputType) {
-=======
->>>>>>> Stashed changes
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -229,15 +134,8 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: TextFormField(
-<<<<<<< Updated upstream
-          child: TextFormField(
             controller: controller,
             keyboardType: inputType,
-            keyboardType: inputType,
-=======
-            controller: controller,
-            keyboardType: inputType,
->>>>>>> Stashed changes
             decoration: InputDecoration(
               hintText: hint,
               border: InputBorder.none,
@@ -254,15 +152,6 @@ class _CreateAccountState extends State<CreateAccount> {
               }
               return null;
             },
-<<<<<<< Updated upstream
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your $label';
-              }
-              return null;
-            },
-=======
->>>>>>> Stashed changes
           ),
         ),
       ],
@@ -302,10 +191,6 @@ class _CreateAccountState extends State<CreateAccount> {
             children: [
               Expanded(
                 child: TextFormField(
-<<<<<<< Updated upstream
-                child: TextFormField(
-=======
->>>>>>> Stashed changes
                   controller: controller,
                   obscureText: !visible,
                   decoration: InputDecoration(
@@ -328,19 +213,6 @@ class _CreateAccountState extends State<CreateAccount> {
                     }
                     return null;
                   },
-<<<<<<< Updated upstream
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your $label';
-                    }
-                    if (label == 'Confirm Password' &&
-                        value != _passwordController.text) {
-                      return 'Passwords do not match';
-                    }
-                    return null;
-                  },
-=======
->>>>>>> Stashed changes
                 ),
               ),
               InkWell(
@@ -361,10 +233,6 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
   Widget _buildTermsAndPolicy(BuildContext context) {
-<<<<<<< Updated upstream
-  Widget _buildTermsAndPolicy(BuildContext context) {
-=======
->>>>>>> Stashed changes
     return Row(
       children: [
         InkWell(
@@ -411,13 +279,6 @@ class _CreateAccountState extends State<CreateAccount> {
                   ..onTap = () {
                     _showTermsAndPolicy(context);
                   },
-<<<<<<< Updated upstream
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    _showTermsAndPolicy(context);
-                  },
-=======
->>>>>>> Stashed changes
               ),
               const TextSpan(
                 text: '.',
@@ -592,172 +453,6 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
-<<<<<<< Updated upstream
-  void _showTermsAndPolicy(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          padding: EdgeInsets.all(16),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Terms & Policy',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Welcome to Bookpad!',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'At Bookpad, we prioritize your privacy and strive to protect your personal information. By using our services, you agree to the terms and policies outlined below:',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  '1. Data Collection:',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
-                Text(
-                  'We collect data to improve your experience. This includes your name, email, phone number, and password.',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  '2. Data Usage:',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
-                Text(
-                  'Your data is used to personalize your experience, provide customer support, and improve our services.',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  '3. Data Sharing:',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
-                Text(
-                  'We do not share your personal data with third parties without your consent, except as required by law.',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  '4. Security:',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
-                Text(
-                  'We implement security measures to protect your data. However, we cannot guarantee complete security.',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  '5. Changes to Terms:',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
-                Text(
-                  'We may update our terms and policies. We will notify you of any changes.',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  '6. Contact Us:',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
-                Text(
-                  'If you have any questions, please contact us at support@bookpad.com.',
-                  style: GoogleFonts.getFont(
-                    'Poppins',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(height: 16),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Close',
-                      style: GoogleFonts.getFont(
-                        'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-=======
->>>>>>> Stashed changes
   Widget _buildSignUpButton() {
     return Center(
       child: _isLoading
@@ -830,11 +525,7 @@ class _CreateAccountState extends State<CreateAccount> {
                           print('Unexpected Error: $e');
                         } finally {
                           setState(() {
-<<<<<<< Updated upstream
                             _isLoading = false;
-=======
-                            _isLoading = false);
->>>>>>> Stashed changes
                           });
                         }
                       }
@@ -874,31 +565,10 @@ class _CreateAccountState extends State<CreateAccount> {
                 Navigator.of(context).pop();
               },
               child: Text('OK'),
-<<<<<<< Updated upstream
-  void _showErrorDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Error'),
-          content: Text(message),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
-=======
->>>>>>> Stashed changes
             ),
           ],
         );
       },
-<<<<<<< Updated upstream
-        );
-      },
-=======
->>>>>>> Stashed changes
     );
   }
 }

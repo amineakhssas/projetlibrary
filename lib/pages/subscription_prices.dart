@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_app/pages/payment.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_app/payment.dart';
 
 class SubscriptionPrices extends StatelessWidget {
   const SubscriptionPrices({super.key});
@@ -47,23 +47,23 @@ class SubscriptionPrices extends StatelessWidget {
                 const SizedBox(height: 20),
                 _buildPlanHeader('Monthly', const Color(0xFFF8BB15)),
                 const SizedBox(height: 10),
-                _buildPlanPrice('4.99\$/Month', const Color(0xFFC1C1C1)),
+                _buildPlanPrice(context, '4.99\$/Month', const Color(0xFFC1C1C1)),
                 const SizedBox(height: 10),
-                _buildPlanPrice('9.99\$/ Month', const Color(0xFFF8BB15)),
+                _buildPlanPrice(context, '9.99\$/Month', const Color(0xFFF8BB15)),
                 const SizedBox(height: 10),
-                _buildPlanPrice('14.99\$/ Month', const Color(0xFF000000),
-                    textColor: const Color(0xFFF8BB15)),
-                const SizedBox(height: 20),
-                _buildPlanHeader('Yearly', const Color(0xFFF8BB15)),
-                const SizedBox(height: 10),
-                _buildPlanPrice('11.99\$/ 3 Month', const Color(0xFFABABAB)),
-                const SizedBox(height: 10),
-                _buildPlanPrice('20.99\$/ 3 Month', const Color(0xFFF8BB15)),
-                const SizedBox(height: 10),
-                _buildPlanPrice('39.99\$/ 3 Month', const Color(0xFF000000),
+                _buildPlanPrice(context, '14.99\$/Month', const Color(0xFF000000),
                     textColor: const Color(0xFFF8BB15)),
                 const SizedBox(height: 20),
                 _buildPlanHeader('Trimonthly', const Color(0xFFF8BB15)),
+                const SizedBox(height: 10),
+                _buildPlanPrice(context, '11.99\$/3 Month', const Color(0xFFABABAB)),
+                const SizedBox(height: 10),
+                _buildPlanPrice(context, '20.99\$/3 Month', const Color(0xFFF8BB15)),
+                const SizedBox(height: 10),
+                _buildPlanPrice(context, '39.99\$/3 Month', const Color(0xFF000000),
+                    textColor: const Color(0xFFF8BB15)),
+                const SizedBox(height: 20),
+                _buildPlanHeader('Yearly', const Color(0xFFF8BB15)),
                 const SizedBox(height: 10),
                 Center(
                   child: Text(
@@ -77,34 +77,13 @@ class SubscriptionPrices extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                _buildPlanPrice('45.99\$/Year', const Color(0xFFABABAB)),
+                _buildPlanPrice(context, '45.99\$/Year', const Color(0xFFABABAB)),
                 const SizedBox(height: 10),
-                _buildPlanPrice('69.99\$/Year', const Color(0xFFF8BB15)),
+                _buildPlanPrice(context, '69.99\$/Year', const Color(0xFFF8BB15)),
                 const SizedBox(height: 10),
-                _buildPlanPrice('99.99\$/Month', const Color(0xFF000000),
+                _buildPlanPrice(context, '99.99\$/Year', const Color(0xFF000000),
                     textColor: const Color(0xFFF8BB15)),
                 const SizedBox(height: 40),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 64, vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Text(
-                    'Submit',
-                    style: GoogleFonts.getFont(
-                      'Poppins',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -135,23 +114,33 @@ class SubscriptionPrices extends StatelessWidget {
     );
   }
 
-  Widget _buildPlanPrice(String price, Color color,
+  Widget _buildPlanPrice(BuildContext context, String price, Color color,
       {Color textColor = Colors.black}) {
-    return Container(
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      width: 200,
-      child: Center(
-        child: Text(
-          price,
-          style: GoogleFonts.getFont(
-            'Poppins',
-            fontWeight: FontWeight.w600,
-            fontSize: 15,
-            color: textColor,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const PaymentPage(),
+          ),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        width: 200,
+        child: Center(
+          child: Text(
+            price,
+            style: GoogleFonts.getFont(
+              'Poppins',
+              fontWeight: FontWeight.w600,
+              fontSize: 15,
+              color: textColor,
+            ),
           ),
         ),
       ),

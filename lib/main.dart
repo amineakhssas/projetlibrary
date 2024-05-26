@@ -111,6 +111,7 @@ class MyApp extends StatelessWidget {
         //body: Search(),
         // body: Search1(),
         //body: SubscriptionPrices(),
+        //body: payment(),
       ),
     );
   }

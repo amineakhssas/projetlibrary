@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'subscription_prices.dart';
+import 'subscription_prices.dart'; // Import the SubscriptionPrices page
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'subscription_prices.dart'; // Import the SubscriptionPrices page
 
 class Search1 extends StatelessWidget {
   const Search1({super.key});
@@ -62,7 +63,7 @@ class Search1 extends StatelessWidget {
                     children: [
                       _buildPlanCard(
                           'Essential',
-                          'No adds, free newsletter and more...',
+                          'pre-release access, free newsletter and more...',
                           const Color(0xFFC1C1C1)),
                       const SizedBox(height: 20),
                       _buildPlanCard(
@@ -84,8 +85,7 @@ class Search1 extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => SubscriptionPrices()),
+                        MaterialPageRoute(builder: (context) => const SubscriptionPrices()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -98,29 +98,6 @@ class Search1 extends StatelessWidget {
                     ),
                     child: Text(
                       'See pricing ->',
-                      style: GoogleFonts.getFont(
-                        'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 64, vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Text(
-                      'Submit',
                       style: GoogleFonts.getFont(
                         'Poppins',
                         fontWeight: FontWeight.w600,
